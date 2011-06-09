@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# 	Usage : newLatexDoc <Directory>
+# 	Desc  : This script generates a new latexDocument based on this template by cloning the template repository.
+#
+git clone /home/daminetreg/workspace/latex/template/
