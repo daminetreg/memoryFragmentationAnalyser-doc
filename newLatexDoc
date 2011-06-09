@@ -3,4 +3,7 @@
 # 	Usage : newLatexDoc <Directory>
 # 	Desc  : This script generates a new latexDocument based on this template by cloning the template repository.
 #
-git clone /home/daminetreg/workspace/latex/template/
+git clone /home/daminetreg/workspace/latex/template/ $1
+cd $1
+rm newLatexDoc
+rm README
