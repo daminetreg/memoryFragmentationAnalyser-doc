@@ -7,3 +7,5 @@ git clone /home/daminetreg/workspace/latex/template/ $1
 cd $1
 rm newLatexDoc
 rm README
+mv src/* .
+rmdir src
