@@ -1,0 +1,76 @@
+\documentclass[a4paper]{report}
+\usepackage{tocvsec2}
+\usepackage{graphicx}    % needed for including graphics e.g. EPS, PS
+\usepackage{url}
+\usepackage[usenames,dvipsnames]{color}
+
+% Subfigures
+\usepackage{subfig}
+
+% Verbatim with symbols
+\usepackage{latexsym}
+\usepackage{alltt}
+
+% Configuration for hyperref
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
+\definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+\hypersetup{
+    colorlinks, linkcolor={dark-red},
+    citecolor={dark-blue}, urlcolor={medium-blue}
+}
+
+\usepackage[xindy, toc, nonumberlist]{glossaries}
+\usepackage[style=verbose-note, backref=true]{biblatex}
+
+\usepackage{setspace}
+\newcommand{\highlight}[1]{\colorbox{yellow}{\parbox{\textwidth}{%
+  \setstretch{1}\textcolor{black}{\scriptsize{#1}}}}}
+
+\usepackage{array}
+
+\topmargin -1.5cm        % read Lamport p.163
+\oddsidemargin -0.04cm   % read Lamport p.163
+\evensidemargin -0.04cm  % same as oddsidemargin but for left-hand pages
+\textwidth 16.59cm
+\textheight 24.94cm 
+%\pagestyle{empty}       % Uncomment if don't want page numbers
+\parskip 7.2pt           % sets spacing between paragraphs
+%\renewcommand{\baselinestretch}{1.5} % Uncomment for 1.5 spacing between lines
+\parindent 8pt		 % sets leading space for paragraphs
+
+\bibliography{contents/bibliography}{}
+\makeglossaries
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+    \newcommand{\rightPage}{May 2011}
+    \newcommand{\rev}{Fr. Sauter AG - Technologies}
+    \newcommand{\companyLogo}{\includegraphics{contents/gfx/logo.png}}
+    \lhead{}
+    \rhead{\companyLogo}
+    \lfoot{\rev}
+    \cfoot{\thepage/\pageref{LastPage}}
+    \rfoot{\rightPage}
+    \renewcommand{\headrulewidth}{1.0pt}
+    \renewcommand{\footrulewidth}{1.0pt}
+\fancypagestyle{plain}{%   <-- this redefines the 'plain' style
+    \lhead{}
+    \rhead{\companyLogo}
+    \lfoot{\rev}
+    \cfoot{\thepage/\pageref{LastPage}}
+    \rfoot{\rightPage}
+    \renewcommand{\headrulewidth}{1.0pt}
+    \renewcommand{\footrulewidth}{1.0pt}
+    \renewcommand{\headrulewidth}{1.0pt}%
+} 
+
+\begin{document}         
+
+\input{contents/mainDocument}
+
+\end{document}
