@@ -1,0 +1,42 @@
+\chapter{Requirements}\label{chap:requirements}
+This chapter describes the different requirements of the memory fragmentation analyser.
+
+\section{Allocation \& Deallocation recording}
+The tool has to record all allocation \& deallocation made by a processus and it's children. It should be able to gather the information and to provide them to the visualization either live or later by storing the data in a file.
+
+There is however many allocation and deallocation operations which have to be recorded, these are the following :
+\begin{itemize}
+    \item \emph{malloc}
+    \item \emph{realloc}
+    \item \emph{free}
+\end{itemize}
+
+For a first version of the system \emph{sbrk}, \emph{brk} and \emph{mmap} won't be supported, but will come later on with an integration with massif.
+
+\section{Interpretation of allocation \& deallocation records}
+The tool should be able to interpret the allocation and deallocation data by reading the records made and creating from the memory adresses and sizes of allocation or deallocation a map of the complete memory space of the processus. By determining in term of blocks of a standard size (\emph{e.g.} 4096 bytes) their percentage of usage. Naturally computing in between the free blocks.
+
+\section{Live representation of memory state}
+The interpretation made of the data have to be accessible to the user in some way, this is why this map should be displayed to the user and that he can interact with it in some ways.
+
+\subsection{Blocks representation}
+Blocks will be represented with an alpha channel varying following the percentage of block usage, the blocks will be displayed on a defined grid of the following size : \emph{200 x Complete Memory / Block Size}.
+
+\subsection{Meta information representation}
+Meta information will be presented to the user like how much of the whole system memory represents these blocks and the percentage of fragmentation of the application.
+
+\subsection{Interactions}
+Different possible interactions should be available to the user : selecting the part of a block or the multiple blocks created by an allocation and getting information about it as defined in the following list.
+\begin{itemize}
+    \item Address
+    \item Size allocated 
+    \item Type : allocation or reallocation
+\end{itemize}
+
+\section{Ideas}
+    
+    \subsection{Use of debug information}
+To identify the module which does the fragmentation in the system or which is reponsible of most of the memory allocation, the tool should be able to exploit debug informations about the current call to give the stack trace until a reasoneable depth responsible of the allocation or free operation.
+    
+    \subsection{Merge of multiple processus memory states}
+It would be nice to be able to merge multiple processus memory state to be able to determine the behaviour of a group of applications.

@@ -1,0 +1,48 @@
+\chapter{Specifications}
+This chapter determines the different solutions which will be used to implement the memory fragmentation analyser (\emph{c.f.} \ref{chap:requirements} \nameref{chap:requirements}).
+
+\section{Allocation \& Deallocation recording}
+To record the different allocation \& deallocation malloc, realloc and free hook will be used to produce a file containing pieces of information about the different actions performed by the software. These pieces of code won't allocate anywhere but on the stack to avoid any misinterpretation because of the process analysis.
+
+\subsection{Hooks bootstrap}
+The hooks will be initialized thanks to the definitions of linker preloading capabilities from a shared object containing the different hooks symbols :
+\begin{verbatim}
+LD_PRELOAD = libmemory-fragmentation-analyzer.so
+\end{verbatim}
+
+\subsection{Recording format}
+The recording format should contain informations about \emph{malloc}, \emph{realloc} and \emph{free} with the corresponding allocations adresses and sizes or new reallocations sizes.
+
+The format has to be simple to generate, so that writing it will be fast and not slowing down the process too much, that's why the following grammar is proposed.
+
+\subsubsection{Grammar}
+\begin{verbatim}
+mem-operations      = [ mem-operation *( LF mem-operation ) ]
+mem-operation       = mem-malloc / mem-realloc / mem-free
+
+mem-malloc          = "m" mem-address ws mem-size       ; Determines that a malloc occured 
+                                                        ; at a given address for a given 
+                                                        ; size
+
+mem-realloc         = "r" mem-address ws mem-size       ; Determines that a realloc occured
+                                                        ; at a given address for a given 
+                                                        ; size
+
+mem-free            = "f" mem-address                   ; Simply tells that what was 
+                                                        ; allocated at this place isn't 
+                                                        ; anymore
+
+
+mem-address         = uint32                            ; Address in memory affected by the
+                                                        ; operation 
+
+mem-size            = uint32                            ; Size in bytes of the operation
+\end{verbatim}
+
+With the following basis grammar : 
+\begin{verbatim}
+bit                 = (%b0 / %b1)                       ; 1 bit 0 or 1
+nibble              = 4bit                              ; 4 bit unsigned integer (0 to F)
+byte                = 8bit                              ; 1 byte (8-bits)
+uint32              = 4byte                             ; 32 bit unsigned integer
+\end{verbatim}
