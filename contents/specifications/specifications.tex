@@ -33,10 +33,10 @@ mem-free            = "f" mem-address                   ; Simply tells that what
                                                         ; anymore
 
 
-mem-address         = uint32                            ; Address in memory affected by the
+mem-address         = dword                             ; Address in memory affected by the
                                                         ; operation 
 
-mem-size            = uint32                            ; Size in bytes of the operation
+mem-size            = dword                             ; Size in bytes of the operation
 \end{verbatim}
 
 With the following basis grammar : 
@@ -44,5 +44,5 @@ With the following basis grammar :
 bit                 = (%b0 / %b1)                       ; 1 bit 0 or 1
 nibble              = 4bit                              ; 4 bit unsigned integer (0 to F)
 byte                = 8bit                              ; 1 byte (8-bits)
-uint32              = 4byte                             ; 32 bit unsigned integer
+dword               = 4byte                             ; 32 bit unsigned integer
 \end{verbatim}
