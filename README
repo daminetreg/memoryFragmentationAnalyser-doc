@@ -1,0 +1,16 @@
+Memory Fragmentation Analyser Documentation
+-------------------------------------------
+
+    The Memory Fragmentation Analyser Documentation contains requirements and specifications about the project.
+
+Compile
+-------
+    Simply execute : ./make.sh and take a look to the preview.pdf
+
+    Dependencies :
+    --------------
+        sudo apt-get install dia
+        sudo apt-get install pdflatex
+        sudo apt-get install xindy
+        sudo apt-get install bibtex
+        sudo apt-get install texlive-* (Yes it's crazy but it's better for further latex work, there is never something missing)
